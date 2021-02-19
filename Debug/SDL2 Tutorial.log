@@ -1,0 +1,10 @@
+﻿  GameManager.cpp
+  Graphics.cpp
+D:\Workspace\390\SDL2 Tutorial\Graphics.cpp(44,56): warning C4474: 'printf' : too many arguments passed for format string
+D:\Workspace\390\SDL2 Tutorial\Graphics.cpp(44,56): message : placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+D:\Workspace\390\SDL2 Tutorial\Graphics.cpp(51,53): warning C4474: 'printf' : too many arguments passed for format string
+D:\Workspace\390\SDL2 Tutorial\Graphics.cpp(51,53): message : placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+  main.cpp
+  Timer.cpp
+  Generating Code...
+  SDL2 Tutorial.vcxproj -> D:\Workspace\390\SDL2 Tutorial\Debug\SDL2 Tutorial.exe

@@ -1,0 +1,2 @@
+D:\Workspace\390\SDL2 Tutorial\Debug\SDL2 Tutorial.exe
+D:\Workspace\390\SDL2 Tutorial\Debug\SDL2 Tutorial.pdb
