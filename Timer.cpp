@@ -1,55 +1,71 @@
+//----------------------------------------------------//
+// Timer.cpp                                          //
+// Singleton                                          //
+// Used to keep track of the time between each reset  //
+// A reset is usually called after each frame         //
+//                                                    //
+// By: Ather Omar                                     //
+//----------------------------------------------------//
 #include "Timer.h"
+//--------------------------------------------------------
+// QuickSDL
+//--------------------------------------------------------
+namespace QuickSDL {
+	//Initializing sInstance to NULL
+	Timer* Timer::sInstance = NULL;
 
-Timer* Timer::sInstance = NULL;
+	Timer* Timer::Instance() {
 
-Timer* Timer::Instance() {
-	if (sInstance == NULL) {
-		sInstance = new Timer();
+		//Create a new instance of Timer if no instance was created before
+		if(sInstance == NULL)
+			sInstance = new Timer();
+
+		return sInstance;
 	}
 
-	return sInstance;
-}
+	void Timer::Release() {
 
-void Timer::Release() {
-	delete sInstance;
-	sInstance = NULL;
-}
+		delete sInstance;
+		sInstance = NULL;
+	}
 
-Timer::Timer() {
-	Reset();
-	// set time scale
-	mTimeScale = 1.0f;
-}
+	Timer::Timer() {
 
-Timer::~Timer() {
+		//Using Reset to initialize all the values beside mTimeScale
+		Reset();
+		mTimeScale = 1.0f;
+	}
 
-}
+	Timer::~Timer() {
 
-void Timer::Reset() {
-	// return number of ms since library was initialized
-	mStartTicks = SDL_GetTicks();
-	mElapsedTicks = 0;
-	mDeltaTime = 0.0f;
-}
+	}
 
-// getter for delta time
-float Timer::DeltaTime() {
-	return mDeltaTime;
-}
+	void Timer::Reset() {
 
-// setter for time scale
-void Timer::TimeScale(float t) {
-	mTimeScale = t;
-}
+		mStartTicks = SDL_GetTicks();
+		mElapsedTicks = 0;
+		mDelataTime = 0.0f;
+	}
 
-// getter for time scale
-float Timer::TimeScale() {
-	return mTimeScale;
-}
+	float Timer::DeltaTime() {
 
-void Timer::Update() {
-	// ticks between last reset and our current time
-	mElapsedTicks = SDL_GetTicks() - mStartTicks;
-	// convert mElapsed to float
-	mDeltaTime = mElapsedTicks * 0.001f;
+		return mDelataTime;
+	}
+
+	void Timer::TimeScale(float t) {
+
+		mTimeScale = t;
+	}
+
+	float Timer::TimeScale() {
+
+		return mTimeScale;
+	}
+
+	void Timer::Update() {
+
+		mElapsedTicks = SDL_GetTicks() - mStartTicks;
+		//Converting milliseconds to seconds
+		mDelataTime = mElapsedTicks * 0.001f;
+	}
 }

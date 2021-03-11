@@ -1,14 +1,13 @@
 #include "GameManager.h"
 
-
 int main(int argc, char* argv[]) {
 
-	// create instance of game manager
-	GameManager* game = GameManager::Instance();
+	QuickSDL::GameManager* game = QuickSDL::GameManager::Instance();
+
 	game->Run();
 
-	GameManager::Release();
-	// to avoid dangling pointers
+	QuickSDL::GameManager::Release();
 	game = NULL;
+
 	return 0;
 }

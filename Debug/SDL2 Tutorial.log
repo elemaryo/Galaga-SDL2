@@ -1,10 +1,11 @@
-﻿  GameManager.cpp
-  Graphics.cpp
-D:\Workspace\390\SDL2 Tutorial\Graphics.cpp(44,56): warning C4474: 'printf' : too many arguments passed for format string
-D:\Workspace\390\SDL2 Tutorial\Graphics.cpp(44,56): message : placeholders and their parameters expect 0 variadic arguments, but 1 were provided
-D:\Workspace\390\SDL2 Tutorial\Graphics.cpp(51,53): warning C4474: 'printf' : too many arguments passed for format string
-D:\Workspace\390\SDL2 Tutorial\Graphics.cpp(51,53): message : placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+﻿D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (SDL2 Tutorial.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  GameManager.cpp
+D:\Workspace\Game Dev\Galega\GameManager.cpp(38,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   main.cpp
-  Timer.cpp
+  PlayScreen.cpp
+  ScreenManager.cpp
+  StartScreen.cpp
+D:\Workspace\Game Dev\Galega\StartScreen.cpp(118,57): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+D:\Workspace\Game Dev\Galega\StartScreen.cpp(144,49): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
   Generating Code...
-  SDL2 Tutorial.vcxproj -> D:\Workspace\390\SDL2 Tutorial\Debug\SDL2 Tutorial.exe
+  SDL2 Tutorial.vcxproj -> D:\Workspace\Game Dev\Galega\Debug\GalagaSDL.exe

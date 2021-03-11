@@ -1,82 +1,142 @@
+//---------------------------------------------------------------------//
+// GameManager.cpp                                                     //
+// Used to intialize and release all other manager                     //
+// Contains the game loop as well as the Update and Render functions   //
+// Used to make sure all functions are called in the correct order     //
+//                                                                     //
+// By: Ather Omar                                                      //
+//---------------------------------------------------------------------//
 #include "GameManager.h"
+#include <time.h>
+//-----------------------------------------------------------
+// QuickSDL
+//-----------------------------------------------------------
+namespace QuickSDL {
+	//Initializing to NULL
+	GameManager* GameManager::sInstance = NULL;
 
-GameManager *GameManager::sInstance = NULL;
+	GameManager* GameManager::Instance() {
 
-GameManager *GameManager::Instance()
-{
-	if (sInstance == NULL)
-	{
-		sInstance = new GameManager();
+		//Create a new instance if no instance was created before
+		if(sInstance == NULL)
+			sInstance = new GameManager();
+
+		return sInstance;
 	}
 
-	return sInstance;
-}
+	void GameManager::Release() {
 
-void GameManager::Release()
-{
-	delete sInstance;
-	sInstance = NULL;
-}
-
-// constructor
-GameManager::GameManager()
-{
-	mQuit = false;
-
-	// initialize graphics
-	mGraphics = Graphics::Instance();
-	mTimer = Timer::Instance();
-
-	// if graphics initialization fails
-	if (!Graphics::Initalized())
-	{
-		mQuit = true;
+		delete sInstance;
+		sInstance = NULL;
 	}
 
-	mParent = new GameEntity(100.0f, 400.0f);
-	mChild = new GameEntity(100.0f, 500.0f);
-	//testing child position
-	// printf("Child local pos (%f,%f)\n", mChild->Pos(GameEntity::world).x, mChild->Pos(GameEntity::world).y);
-	mChild->Parent(mParent);
-	// printf("Child local pos (%f,%f)\n", mChild->Pos(GameEntity::world).x, mChild->Pos(GameEntity::world).y);
-}
+	GameManager::GameManager() {
 
-GameManager::~GameManager()
-{
-	Graphics::Release();
-	mGraphics = NULL;
-	Timer::Release();
-	mTimer = NULL;
+		// If random numbers are generated with rand()
+		// without first calling srand(), 
+		// your program will create the same sequence of numbers each time it runs.
+		srand(time(0));
 
-	delete mParent;
-	delete mChild;
-}
+		mQuit = false;
 
-// game loop
-void GameManager::Run()
-{
-	while (!mQuit)
-	{
-		// while SDL is receiving events
-		//update time in the beginning of the loop
-		mTimer->Update();
-		while (SDL_PollEvent(&mEvents) != 0)
-		{
+		//Initialize SDL
+		mGraphics = Graphics::Instance();
 
-			if (mEvents.type == SDL_QUIT)
-			{
-				mQuit = true;
+		// Quits the game if SDL fails to initialize
+		if(!Graphics::Initialized())
+			mQuit = true;
+
+		//Initialize AssetManager
+		mAssetMgr = AssetManager::Instance();
+
+		//Initialize InputManager
+		mInputMgr = InputManager::Instance();
+
+		//Initialize AudioManager
+		mAudioMgr = AudioManager::Instance();
+
+		//Initialize Timer
+		mTimer = Timer::Instance();
+		
+		//Initialize Screen Manager
+		mScreenMgr = ScreenManager::Instance();
+	}
+
+	GameManager::~GameManager() {
+
+		AudioManager::Release();
+		mAudioMgr = NULL;
+
+		AssetManager::Release();
+		mAssetMgr = NULL;
+
+		Graphics::Release();
+		mGraphics = NULL;
+
+		InputManager::Release();
+		mInputMgr = NULL;
+
+		Timer::Release();
+		mTimer = NULL;
+
+		mScreenMgr->Release();
+		mScreenMgr = NULL;
+	}
+
+	void GameManager::EarlyUpdate() {
+
+		//Updating the input state before any other updates are run to make sure the Input check is accurate
+		mInputMgr->Update();
+	}
+
+	void GameManager::Update() {
+		
+		//GameEntity Updates should happen here
+		mScreenMgr->Update();
+	}
+
+	void GameManager::LateUpdate() {
+
+		//Any collision detection should happen here
+
+		mInputMgr->UpdatePrevInput();
+		mTimer->Reset();
+	}
+
+	void GameManager::Render() {
+
+		//Clears the last frame's render from the back buffer
+		mGraphics->ClearBackBuffer();
+
+		//All other rendering is to happen here
+		mScreenMgr->Render();
+
+		//Renders the current frame
+		mGraphics->Render();
+	}
+
+	void GameManager::Run() {
+
+		while(!mQuit) {
+
+			mTimer->Update();
+
+			while(SDL_PollEvent(&mEvents) != 0) {
+				//Checks if the user quit the game
+				if(mEvents.type == SDL_QUIT) {
+
+					mQuit = true;
+				}
 			}
-		}
 
-		// if our time is bigger than a fraction of our frame rate then do a render
-		// ensures 60fps meaning we want 0.017 seconds for each frame
-		if (mTimer->DeltaTime() >= (1.0f / FRAME_RATE))
-		{
-			// Render calls into graphics
-			mGraphics->Render();
-			// reset after timer
-			mTimer->Reset();
+			//Limits the frame rate to FRAME_RATE
+			if(mTimer->DeltaTime() >= (1.0f / FRAME_RATE)) {
+
+				EarlyUpdate();
+				Update();
+				LateUpdate();
+				Render();
+			}
 		}
 	}
 }
