@@ -6,15 +6,16 @@
 
 using namespace QuickSDL;
 
-class Scoreboard : public GameEntity {
+class Scoreboard : public GameEntity
+{
 
 private:
-
-	std::vector<Texture*> mScore;
+	std::vector<Texture *> mScore;
+	SDL_Color mColor;
 
 public:
-
 	Scoreboard();
+	Scoreboard(SDL_Color color);
 	~Scoreboard();
 
 	void Score(int score);
@@ -23,7 +24,6 @@ public:
 
 private:
 	void ClearBoard();
-
 };
 
 #endif // !_SCOREBOARD_H

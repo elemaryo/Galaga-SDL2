@@ -1,21 +1,25 @@
 #include "ScreenManager.h"
 
-ScreenManager* ScreenManager::sInstance = NULL;
+ScreenManager *ScreenManager::sInstance = NULL;
 
-ScreenManager* ScreenManager::Instance() {
-	if (sInstance == NULL) {
+ScreenManager *ScreenManager::Instance()
+{
+	if (sInstance == NULL)
+	{
 		sInstance = new ScreenManager();
 	}
 
 	return sInstance;
 }
 
-void ScreenManager::Release() {
+void ScreenManager::Release()
+{
 	delete sInstance;
 	sInstance = NULL;
 }
 
-ScreenManager::ScreenManager() {
+ScreenManager::ScreenManager()
+{
 	// Initialize Background Stars
 	mBackgroundStars = BackgroundStars::Instance();
 
@@ -29,7 +33,8 @@ ScreenManager::ScreenManager() {
 	mCurrentScreen = start;
 }
 
-ScreenManager::~ScreenManager() {
+ScreenManager::~ScreenManager()
+{
 
 	mInput = NULL;
 
@@ -43,47 +48,47 @@ ScreenManager::~ScreenManager() {
 	mPlayScreen = NULL;
 }
 
-void ScreenManager::Update() {
+void ScreenManager::Update()
+{
 	mBackgroundStars->Update();
 
-	switch (mCurrentScreen) {
+	switch (mCurrentScreen)
+	{
 	case start:
 		mStartScreen->Update();
 		//update current screen if enter is pressed
-		if (mInput->KeyPressed(SDL_SCANCODE_RETURN)) {
+		if (mInput->KeyPressed(SDL_SCANCODE_RETURN))
+		{
 			mCurrentScreen = play;
 			//after switch the animation replays
 			mStartScreen->ResetAnimation();
+			mPlayScreen->StartNewGame();
 		}
 		break;
 
 	case play:
 		mPlayScreen->Update();
-		if (mInput->KeyPressed(SDL_SCANCODE_ESCAPE)) {
+		if (mInput->KeyPressed(SDL_SCANCODE_ESCAPE))
+		{
 			mCurrentScreen = start;
 		}
 		break;
 	}
-	
-
 };
 
-void ScreenManager::Render() {
+void ScreenManager::Render()
+{
 
 	mBackgroundStars->Render();
 
-	switch (mCurrentScreen) {
+	switch (mCurrentScreen)
+	{
 	case start:
 		mStartScreen->Render();
 		break;
-	
+
 	case play:
 		mPlayScreen->Render();
 		break;
 	}
 }
-
-
-
-
-
