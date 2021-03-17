@@ -10,7 +10,7 @@ class Scoreboard : public GameEntity
 {
 
 private:
-	std::vector<Texture *> mScore;
+	std::vector<Texture*> mScore;
 	SDL_Color mColor;
 
 public:

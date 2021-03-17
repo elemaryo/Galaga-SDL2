@@ -41,7 +41,7 @@ Star::~Star(){
 // star scrolls down to the end then repositioned to a random positon
 void Star::ScrollStar(){
 	
-	Translate(VEC2_UP * mScrollSpeed);
+	Translate(VEC2_UP * mScrollSpeed, world);
 
 	Vector2 pos = Pos(local);
 

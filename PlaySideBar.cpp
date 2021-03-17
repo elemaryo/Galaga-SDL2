@@ -8,8 +8,8 @@ PlaySideBar::PlaySideBar()
 	mBackground = new Texture("black.png");
 	mBackground->Parent(this);
 	mBackground->Pos(Vector2(45.0f, 300.0f));
-	mBackground->Scale(3.0f, 10.0f);
-
+	mBackground->Scale(Vector2(3.0f, 10.0f));
+		
 	mHighLabel = new Texture("HIGH", "emulogic.ttf", 32, {150, 0, 0});
 	mHighLabel->Parent(this);
 	mHighLabel->Pos(Vector2(-25.0f, 0.0f));
@@ -44,7 +44,7 @@ PlaySideBar::PlaySideBar()
 		mShipTextures[i]->Parent(mShips);
 		// i % 3 is incremented until it gets to 3 then resets to 0 and starts all over again
 		// i/3 makes sure once it reaches 3, it would start a new row
-		mShipTextures[i]->Pos(Vector2(62.0f * (i % 3), 70.0f * (i/3));
+		mShipTextures[i]->Pos(Vector2(62.0f * (i % 3), 70.0f * (i/3)));
 	}
 
 	mTotalShipsLabel = new Scoreboard();
@@ -54,7 +54,7 @@ PlaySideBar::PlaySideBar()
 	// Render flags
 	mFlags = new GameEntity();
 	mFlags->Parent(this);
-	mFlags->Pos(Vector2(-50.0f, 65.0f));
+	mFlags->Pos(Vector2(-50.0f, 650.0f));
 
 	mFlagTimer = 0.0f;
 	mFlagInterval = 0.2f;
@@ -102,10 +102,10 @@ PlaySideBar::~PlaySideBar()
 
 void PlaySideBar::ClearFlags()
 {
-	for (int i = 0; o < mFlagTextures.size(); i++)
+	for (int i = 0; i < mFlagTextures.size(); i++)
 	{
 		delete mFlagTextures[i];
-		mFlagTextures = NULL;
+		mFlagTextures[i] = NULL;
 	}
 
 	mFlagTextures.clear();
@@ -190,7 +190,7 @@ void PlaySideBar::AddFlag(std::string filename, float width, int value)
 		mFlagXOffset += width * 0.5f;
 	}
 
-	mRemaingingLevels - value;
+	mRemaingingLevels -= value;
 
 	mFlagTextures.push_back(new Texture(filename));
 	mFlagTextures[index]->Parent(mFlags);
@@ -214,7 +214,7 @@ void PlaySideBar::Update()
 
 	if (mRemaingingLevels > 0)
 	{
-		mFlagTimer = mTimer->DeltaTime();
+		mFlagTimer += mTimer->DeltaTime();
 		if (mFlagTimer >= mFlagInterval)
 		{
 			AddNextFlag();

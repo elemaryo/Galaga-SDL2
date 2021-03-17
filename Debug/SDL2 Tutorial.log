@@ -1,11 +1,35 @@
 ﻿D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (SDL2 Tutorial.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  AnimatedTexture.cpp
+  BackgroundStars.cpp
+  Bullet.cpp
+  GameEntity.cpp
+D:\Workspace\Game Dev\Galaga\GameEntity.cpp(56,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+D:\Workspace\Game Dev\Galaga\GameEntity.cpp(61,12): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   GameManager.cpp
-D:\Workspace\Game Dev\Galega\GameManager.cpp(38,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Workspace\Game Dev\Galaga\GameManager.cpp(38,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Level.cpp
   main.cpp
+  Player.cpp
   PlayScreen.cpp
+  PlaySideBar.cpp
+D:\Workspace\Game Dev\Galaga\PlaySideBar.cpp(105,20): warning C4018: '<': signed/unsigned mismatch
+D:\Workspace\Game Dev\Galaga\PlaySideBar.cpp(142,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Workspace\Game Dev\Galaga\PlaySideBar.cpp(190,31): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+D:\Workspace\Game Dev\Galaga\PlaySideBar.cpp(198,41): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+D:\Workspace\Game Dev\Galaga\PlaySideBar.cpp(200,30): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+D:\Workspace\Game Dev\Galaga\PlaySideBar.cpp(253,20): warning C4018: '<': signed/unsigned mismatch
+  Scoreboard.cpp
+D:\Workspace\Game Dev\Galaga\Scoreboard.cpp(23,20): warning C4018: '<': signed/unsigned mismatch
+D:\Workspace\Game Dev\Galaga\Scoreboard.cpp(66,20): warning C4018: '<': signed/unsigned mismatch
   ScreenManager.cpp
+  Star.cpp
+D:\Workspace\Game Dev\Galaga\Star.cpp(21,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Workspace\Game Dev\Galaga\Star.cpp(21,21): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Workspace\Game Dev\Galaga\Star.cpp(50,18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  StarLayer.cpp
   StartScreen.cpp
-D:\Workspace\Game Dev\Galega\StartScreen.cpp(118,57): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-D:\Workspace\Game Dev\Galega\StartScreen.cpp(144,49): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+D:\Workspace\Game Dev\Galaga\StartScreen.cpp(118,57): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+D:\Workspace\Game Dev\Galaga\StartScreen.cpp(144,49): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+  Texture.cpp
   Generating Code...
-  SDL2 Tutorial.vcxproj -> D:\Workspace\Game Dev\Galega\Debug\GalagaSDL.exe
+  SDL2 Tutorial.vcxproj -> D:\Workspace\Game Dev\Galaga\Debug\GalagaSDL.exe

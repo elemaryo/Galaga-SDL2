@@ -135,9 +135,18 @@ namespace QuickSDL {
 		return mParent;
 	}
 
-	void GameEntity::Translate(Vector2 vec) {
-
-		mPos += vec;
+	void GameEntity::Translate(Vector2 vec, SPACE space) {
+		// translate normally if the space is in world
+		if (space == world) {
+			mPos += vec;
+		}
+		// translate in local space
+		else {
+			// transform vector into local space to increment by changing
+			// to world rotation
+			mPos += RotateVector(vec, Rotation());
+		}
+		
 	}
 
 	void GameEntity::Rotate(float amount) {

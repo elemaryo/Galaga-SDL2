@@ -3,13 +3,12 @@
 Scoreboard::Scoreboard() : Scoreboard({230, 230, 230})
 {
 
-	Score(0);
 }
 
 Scoreboard::Scoreboard(SDL_Color color)
 {
-	Score(0);
 	mColor = color;
+	Score(0);
 }
 
 Scoreboard::~Scoreboard()
@@ -51,7 +50,7 @@ void Scoreboard::Score(int score)
 		std::string str = std::to_string(score);
 		int lastIndex = str.length() - 1;
 
-		for (int i = 0; i < lastIndex; i++)
+		for (int i = 0; i <= lastIndex; i++)
 		{
 			mScore.push_back(new Texture(str.substr(i, 1), "emulogic.ttf", 32, mColor));
 			mScore[i]->Parent(this);

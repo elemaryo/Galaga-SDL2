@@ -2,3 +2,5 @@ D:\Workspace\390\SDL2 Tutorial\Debug\SDL2 Tutorial.exe
 D:\Workspace\390\SDL2 Tutorial\Debug\SDL2 Tutorial.pdb
 D:\Workspace\Game Dev\Galega\Debug\GalagaSDL.exe
 D:\Workspace\Game Dev\Galega\Debug\GalagaSDL.pdb
+D:\Workspace\Game Dev\Galaga\Debug\GalagaSDL.exe
+D:\Workspace\Game Dev\Galaga\Debug\GalagaSDL.pdb

@@ -9,16 +9,16 @@
 class PlaySideBar : public GameEntity
 {
 private:
-	Timer *mTimer;
-	AudioManager *mAudio;
+	Timer* mTimer;
+	AudioManager* mAudio;
 
-	Texture *mBackground;
+	Texture* mBackground;
 
-	Texture *mHighLabel;
-	Texture *mScoreLabel;
-	Scoreboard *mHighScoreBoard;
+	Texture* mHighLabel;
+	Texture* mScoreLabel;
+	Scoreboard* mHighScoreBoard;
 
-	Texture *mPlayerOneLabel;
+	Texture* mPlayerOneLabel;
 	float mBlinkTimer;
 	float mBlnkInterval;
 	bool mPlayOneVisible;
@@ -27,14 +27,14 @@ private:
 
 	// player health
 	static const int MAX_SHIP_TEXTURES = 5;
-	GameEntity *mShips;
-	Texture *mShipTextures[MAX_SHIP_TEXTURES];
+	GameEntity* mShips;
+	Texture* mShipTextures[MAX_SHIP_TEXTURES];
 	//integer to keep track of total ships the player has
 	int mTotalShips;
-	Scoreboard *mTotalShipsLabel;
+	Scoreboard* mTotalShipsLabel;
 
-	GameEntity *mFlags;
-	std::vector<Texture *> mFlagTextures;
+	GameEntity* mFlags;
+	std::vector<Texture*> mFlagTextures;
 	int mRemaingingLevels;
 	int mFlagXOffset;
 	// delay for each flag

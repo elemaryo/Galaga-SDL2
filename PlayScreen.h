@@ -1,21 +1,18 @@
 #ifndef _PLAYSCREEN_H
 #define _PLAYSCREEN_H
 
-#include "InputManager.h"
-#include "BackgroundStars.h"
-#include "PlaySideBar.h"
 #include "Level.h"
 
 class PlayScreen : public GameEntity
 {
 private:
-	Timer *mTimer;
-	InputManager *mInput;
-	AudioManager *mAudio;
+	Timer* mTimer;
+	InputManager* mInput;
+	AudioManager* mAudio;
 
-	BackgroundStars *mStars;
-	PlaySideBar *mSideBar;
-	Texture *mStartLabel;
+	BackgroundStars* mStars;
+	PlaySideBar* mSideBar;
+	Texture* mStartLabel;
 	float mLevelStartTimer;
 	float mLevelStartDelay;
 	bool mGameStarted;
@@ -23,6 +20,10 @@ private:
 	Level *mLevel;
 	bool mLevelStarted;
 	int mCurrentStage;
+
+	// a level cannot have a player instance everytime so it should be passed
+	// to the level from the play screen to keep state
+	Player* mPlayer;
 
 private:
 	void StartNextLevel();
@@ -32,6 +33,8 @@ public:
 	~PlayScreen();
 
 	void StartNewGame();
+
+	bool GameOver();
 
 	void Update();
 	void Render();
